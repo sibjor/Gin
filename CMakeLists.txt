@@ -13,6 +13,7 @@ add_subdirectory(vendored/SDL_ttf EXCLUDE_FROM_ALL)
 add_executable(Gin
     src/main.cpp
     src/app.cpp
+    src/gui.cpp
 )
 
 # Link everything you need

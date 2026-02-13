@@ -2,6 +2,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_mixer/SDL_mixer.h>
+#include "gui.hpp"
 
 namespace Gin
 {
@@ -19,6 +20,15 @@ namespace Gin
         SDL_Renderer *renderer;
         bool isRunning;
         TTF_Font *defaultFont;
+        GUI* gui;
+        
+        // Logical resolution (design resolution)
+        static constexpr int LOGICAL_WIDTH = 1920;
+        static constexpr int LOGICAL_HEIGHT = 1080;
+        
+        // Example GUI state
+        float volume;
+        int selectedOption;
 
         void handleEvents();
         void update();
