@@ -112,12 +112,6 @@ namespace Gin
             case SDL_EVENT_QUIT:
                 isRunning = false;
                 break;
-            case SDL_EVENT_KEY_DOWN:
-                if (event.key.key == SDLK_ESCAPE)
-                {
-                    isRunning = false;
-                }
-                break;
             }
         }
     }
