@@ -3,17 +3,24 @@
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_mixer/SDL_mixer.h>
 
-namespace Gin {
-    class App {
+namespace Gin
+{
+    class App
+    {
     public:
         App();
         ~App();
-        bool initialize(const char* title, int width, int height);
+        bool initialize(const char *title, int width, int height);
         void run();
-        void cleanup(); 
+        void cleanup();
+
     private:
-        SDL_Window* window;
-        SDL_Renderer* renderer;
+        SDL_Window *window;
+        SDL_Renderer *renderer;
         bool isRunning;
+
+        void handleEvents();
+        void update();
+        void render();
     };
 } // namespace Gin
