@@ -9,7 +9,7 @@ namespace Gin
     class GUI
     {
     public:
-        GUI(SDL_Renderer* renderer, TTF_Font* font);
+        GUI(SDL_Renderer* renderer, TTF_Font* font, const int width, const int height);
         
         // Call each frame
         void Begin(int mouseX, int mouseY, bool mousePressed);

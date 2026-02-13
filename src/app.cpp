@@ -84,7 +84,7 @@ namespace Gin
             return false;
         }
 
-        gui = new GUI(renderer, defaultFont);
+        gui = new GUI(renderer, defaultFont, LOGICAL_WIDTH, LOGICAL_HEIGHT);
         isRunning = true;
 
         SDL_Log("Initialized with logical resolution: %dx%d", LOGICAL_WIDTH, LOGICAL_HEIGHT);

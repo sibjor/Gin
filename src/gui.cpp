@@ -2,7 +2,7 @@
 
 namespace Gin
 {
-    GUI::GUI(SDL_Renderer *renderer, TTF_Font *font)
+    GUI::GUI(SDL_Renderer* renderer, TTF_Font* font, const int width, const int height)
         : renderer(renderer), font(font),
           mouseX(0), mouseY(0), mousePressed(false), mouseClicked(false),
           hotID(-1), activeID(-1), nextID(0)
@@ -24,7 +24,7 @@ namespace Gin
 
     void GUI::End()
     {
-        // Empty - widgets manage their own state
+        
     }
 
     int GUI::GenerateID()
@@ -138,11 +138,9 @@ namespace Gin
             }
         }
 
-        // If slider is active, update value (even if mouse moved outside! - BUG!)
+        // If slider is active, update value (even if mouse is outside)
         if (activeID == id && mousePressed)
         {
-            hotID = id;
-            
             float t = (float)(mouseX - x) / (float)w;
             if (t < 0.0f)
                 t = 0.0f;
@@ -150,6 +148,12 @@ namespace Gin
                 t = 1.0f;
             *value = min + t * (max - min);
             changed = true;
+        }
+
+        // Release slider when mouse button is released
+        if (activeID == id && !mousePressed)
+        {
+            activeID = -1;
         }
 
         Rect(x, sliderY + sliderHeight / 2 - 2, w, 4, {80, 80, 80, 255}, true);
