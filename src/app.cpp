@@ -11,6 +11,17 @@ namespace Gin
         cleanup();
     }
 
+    bool App::loadFonts()
+    {
+        defaultFont = TTF_OpenFont("assets/fonts/Montserrat/static/Montserrat-Regular.ttf", 16);
+        if (!defaultFont)
+        {
+            SDL_Log("Failed to load font: %s", SDL_GetError());
+            return false;
+        }
+        return true;
+    }
+    
     bool App::initialize(const char *title, int width, int height)
     {
         if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMEPAD))
@@ -43,6 +54,11 @@ namespace Gin
         {
             SDL_Log("Failed to create renderer: %s", SDL_GetError());
             return false;
+        }
+
+        if(!loadFonts())
+        {
+            SDL_Log("Failed to load fonts: %s", SDL_GetError());
         }
 
         isRunning = true;
@@ -90,7 +106,7 @@ namespace Gin
         SDL_RenderClear(renderer);
 
         // Draw objects here
-
+        
         SDL_RenderPresent(renderer);
     }
 

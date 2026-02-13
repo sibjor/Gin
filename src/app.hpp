@@ -18,9 +18,11 @@ namespace Gin
         SDL_Window *window;
         SDL_Renderer *renderer;
         bool isRunning;
+        TTF_Font *defaultFont;
 
         void handleEvents();
         void update();
         void render();
+        bool loadFonts();
     };
 } // namespace Gin
