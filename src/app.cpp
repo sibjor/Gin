@@ -140,23 +140,7 @@ namespace Gin
 
         gui->Begin((int)logicalMouseX, (int)logicalMouseY, mouseDown);
 
-        gui->Label("Gin Engine", 50, 50);
-
-        if (gui->Button("Try click it!", 50, 100, 200, 50))
-        {
-            SDL_Log("Button clicked!");
-        }
-
-        if (gui->Slider("Volume", 50, 180, 300, &volume, 0.0f, 1.0f))
-        {
-            SDL_Log("Volume changed: %.2f", volume);
-        }
-
-        std::vector<std::string> options = {"Low", "Medium", "High", "Ultra"};
-        if (gui->Dropdown("Quality", 50, 280, 300, &selectedOption, options))
-        {
-            SDL_Log("Quality: %s", options[selectedOption].c_str());
-        }
+        // GUI rendering goes here - see example-usage.hpp for examples
 
         gui->End();
 
