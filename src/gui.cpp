@@ -130,7 +130,7 @@ namespace Gin
         // Check if mouse is over slider
         if (RegionHit(x, sliderY, w, sliderHeight))
         {
-            hotID = id;  // Sätt hotID även här!
+            hotID = id;
 
             if (activeID == -1 && mouseClicked)
             {
@@ -138,10 +138,10 @@ namespace Gin
             }
         }
 
-        // If slider is active, update value (even if mouse moved outside!)
+        // If slider is active, update value (even if mouse moved outside! - BUG!)
         if (activeID == id && mousePressed)
         {
-            hotID = id;  // Behåll hotID medan vi drar!
+            hotID = id;
             
             float t = (float)(mouseX - x) / (float)w;
             if (t < 0.0f)

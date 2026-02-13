@@ -130,43 +130,36 @@ namespace Gin
     {
         SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
         SDL_RenderClear(renderer);
-        
-        // Get mouse state in window coordinates
+
         float windowMouseX, windowMouseY;
         Uint8 mouseState = SDL_GetMouseState(&windowMouseX, &windowMouseY);
         bool mouseDown = (mouseState & SDL_BUTTON_LMASK) != 0;
-        
-        // Convert to logical coordinates
+
         float logicalMouseX, logicalMouseY;
         SDL_RenderCoordinatesFromWindow(renderer, windowMouseX, windowMouseY, &logicalMouseX, &logicalMouseY);
-        
+
         gui->Begin((int)logicalMouseX, (int)logicalMouseY, mouseDown);
-        
+
         gui->Label("Gin Engine", 50, 50);
-        
-        if (gui->Button("Click Me!", 50, 100, 200, 50))
+
+        if (gui->Button("Try click it!", 50, 100, 200, 50))
         {
             SDL_Log("Button clicked!");
         }
-        
+
         if (gui->Slider("Volume", 50, 180, 300, &volume, 0.0f, 1.0f))
         {
             SDL_Log("Volume changed: %.2f", volume);
         }
-        
+
         std::vector<std::string> options = {"Low", "Medium", "High", "Ultra"};
         if (gui->Dropdown("Quality", 50, 280, 300, &selectedOption, options))
         {
             SDL_Log("Quality: %s", options[selectedOption].c_str());
         }
-        
-        if (gui->Button("Exit", LOGICAL_WIDTH - 170, LOGICAL_HEIGHT - 70, 150, 50))
-        {
-            isRunning = false;
-        }
-        
+
         gui->End();
-        
+
         SDL_RenderPresent(renderer);
     }
 
