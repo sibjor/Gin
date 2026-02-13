@@ -89,6 +89,7 @@ namespace Gin
         if (hotID == id && activeID == id && !mousePressed)
         {
             clicked = true;
+            activeID = -1;  // Reset activeID after click
         }
 
         // Render button
