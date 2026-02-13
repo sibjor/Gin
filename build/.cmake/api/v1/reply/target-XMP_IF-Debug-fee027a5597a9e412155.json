@@ -1,0 +1,62 @@
+{
+	"abstract" : true,
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"vendored/SDL_mixer/external/libxmp/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 264,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 268,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"id" : "XMP_IF::@76be112060ebca0b54fe",
+	"interfaceCompileDependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "xmp_shared::@76be112060ebca0b54fe"
+		}
+	],
+	"interfaceLinkLibraries" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "xmp_shared::@76be112060ebca0b54fe"
+		}
+	],
+	"name" : "XMP_IF",
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/libxmp-build",
+		"source" : "vendored/SDL_mixer/external/libxmp"
+	},
+	"sources" : [],
+	"type" : "INTERFACE_LIBRARY"
+}

@@ -1,0 +1,19 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/libxmp-build/examples",
+		"source" : "vendored/SDL_mixer/external/libxmp/examples"
+	}
+}

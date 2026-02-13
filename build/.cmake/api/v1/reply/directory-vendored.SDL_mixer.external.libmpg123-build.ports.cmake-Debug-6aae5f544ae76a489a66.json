@@ -1,0 +1,94 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"vendored/SDL_mixer/external/mpg123/ports/cmake/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 23,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 34,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 50,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/mpg123",
+			"exportName" : "targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "libmpg123::@114d954e50fa48937da0",
+					"index" : 15
+				},
+				{
+					"id" : "libsyn123::@86fe56fe7d107efe51ca",
+					"index" : 16
+				}
+			],
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/libmpg123-build/ports/cmake/CMakeFiles/Export/b8881b35a72b6701d8340fca73f870db/targets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/mpg123",
+			"paths" : 
+			[
+				"build/vendored/SDL_mixer/external/libmpg123-build/ports/cmake/mpg123-config.cmake",
+				"build/vendored/SDL_mixer/external/libmpg123-build/ports/cmake/mpg123-config-version.cmake"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib/pkgconfig",
+			"paths" : 
+			[
+				"build/vendored/SDL_mixer/external/libmpg123-build/ports/cmake/libmpg123.pc",
+				"build/vendored/SDL_mixer/external/libmpg123-build/ports/cmake/libsyn123.pc"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/libmpg123-build/ports/cmake",
+		"source" : "vendored/SDL_mixer/external/mpg123/ports/cmake"
+	}
+}

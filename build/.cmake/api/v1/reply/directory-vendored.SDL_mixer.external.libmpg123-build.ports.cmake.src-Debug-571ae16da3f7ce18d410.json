@@ -1,0 +1,19 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/libmpg123-build/ports/cmake/src",
+		"source" : "vendored/SDL_mixer/external/mpg123/ports/cmake/src"
+	}
+}

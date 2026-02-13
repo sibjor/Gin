@@ -1,0 +1,76 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"vendored/SDL_mixer/external/flac/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 152,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 153,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "include/FLAC",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/flac/include/FLAC/all.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC/assert.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC/callback.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC/export.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC/format.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC/metadata.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC/ordinals.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC/stream_decoder.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC/stream_encoder.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/FLAC++",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/flac/include/FLAC++/all.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC++/decoder.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC++/encoder.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC++/export.h",
+				"vendored/SDL_mixer/external/flac/include/FLAC++/metadata.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/flac-build",
+		"source" : "vendored/SDL_mixer/external/flac"
+	}
+}

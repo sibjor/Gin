@@ -1,0 +1,63 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"vendored/SDL_mixer/external/wavpack/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 628,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/wavpack-build/wavpackdll.lib"
+			],
+			"targetId" : "wavpack::@837826c33811462af787",
+			"targetIndex" : 29,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/wavpackdll.dll"
+			],
+			"targetId" : "wavpack::@837826c33811462af787",
+			"targetIndex" : 29,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/wavpack-build",
+		"source" : "vendored/SDL_mixer/external/wavpack"
+	}
+}

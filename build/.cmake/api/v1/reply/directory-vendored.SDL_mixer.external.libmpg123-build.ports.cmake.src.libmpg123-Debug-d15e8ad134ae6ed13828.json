@@ -1,0 +1,95 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"vendored/SDL_mixer/external/mpg123/ports/cmake/src/libmpg123/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 258,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 262,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 264,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/libmpg123-build/ports/cmake/src/libmpg123/mpg123.lib"
+			],
+			"targetId" : "libmpg123::@114d954e50fa48937da0",
+			"targetIndex" : 15,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/mpg123-0.dll"
+			],
+			"targetId" : "libmpg123::@114d954e50fa48937da0",
+			"targetIndex" : 15,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/mpg123/ports/cmake/src/libmpg123/../../../../src/include/mpg123.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/mpg123/ports/cmake/src/libmpg123/../../../../src/include/fmt123.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/libmpg123-build/ports/cmake/src/libmpg123",
+		"source" : "vendored/SDL_mixer/external/mpg123/ports/cmake/src/libmpg123"
+	}
+}

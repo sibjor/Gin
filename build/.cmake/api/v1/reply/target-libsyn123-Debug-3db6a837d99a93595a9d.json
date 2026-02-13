@@ -1,0 +1,287 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "Debug/syn123-0.dll"
+		},
+		{
+			"path" : "vendored/SDL_mixer/external/libmpg123-build/ports/cmake/src/libsyn123/syn123.lib"
+		},
+		{
+			"path" : "Debug/syn123-0.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"install",
+			"add_compile_options",
+			"add_compile_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"vendored/SDL_mixer/external/mpg123/ports/cmake/src/libsyn123/CMakeLists.txt",
+			"vendored/SDL_mixer/external/mpg123/ports/cmake/src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 35,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 367,
+				"parent" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 362,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 357,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 3,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 -MDd"
+				},
+				{
+					"backtrace" : 4,
+					"fragment" : "/wd4996"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 5,
+					"define" : "NOXFERMEM"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "_CRT_SECURE_NO_WARNINGS"
+				},
+				{
+					"define" : "libsyn123_EXPORTS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 6,
+					"path" : "C:/Projekt/Datorspel/Gin/vendored/SDL_mixer/external/mpg123/ports/cmake/src/../../../src"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Projekt/Datorspel/Gin/build/vendored/SDL_mixer/external/libmpg123-build/ports/cmake/src"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Projekt/Datorspel/Gin/vendored/SDL_mixer/external/mpg123/ports/cmake/src/../../../src/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "C:/Projekt/Datorspel/Gin/build/vendored/SDL_mixer/external/libmpg123-build/ports/cmake/src/libsyn123"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "C:/Projekt/Datorspel/Gin/vendored/SDL_mixer/external/mpg123/ports/cmake/src/libsyn123/../../../src/libsyn123"
+				}
+			],
+			"language" : "C",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "99"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "compat_str::@7b239e6a1c4c52625f5a"
+		}
+	],
+	"id" : "libsyn123::@86fe56fe7d107efe51ca",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "lib"
+			},
+			{
+				"backtrace" : 2,
+				"path" : "bin"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "C:/Program Files (x86)/Project"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:x64 /debug /INCREMENTAL",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "C"
+	},
+	"name" : "libsyn123",
+	"nameOnDisk" : "syn123-0.dll",
+	"objectDependencies" : 
+	[
+		{
+			"backtrace" : 1,
+			"id" : "compat_str::@7b239e6a1c4c52625f5a"
+		}
+	],
+	"orderDependencies" : 
+	[
+		{
+			"id" : "compat_str::@7b239e6a1c4c52625f5a"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/libmpg123-build/ports/cmake/src/libsyn123",
+		"source" : "vendored/SDL_mixer/external/mpg123/ports/cmake/src/libsyn123"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			]
+		},
+		{
+			"name" : "Object Libraries",
+			"sourceIndexes" : 
+			[
+				7
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vendored/SDL_mixer/external/mpg123/src/libsyn123/pinknoise.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vendored/SDL_mixer/external/mpg123/src/libsyn123/geiger.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vendored/SDL_mixer/external/mpg123/src/libsyn123/libsyn123.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vendored/SDL_mixer/external/mpg123/src/libsyn123/volume.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vendored/SDL_mixer/external/mpg123/src/libsyn123/resample.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vendored/SDL_mixer/external/mpg123/src/libsyn123/filter.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vendored/SDL_mixer/external/mpg123/src/libsyn123/sampleconv.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "build/vendored/SDL_mixer/external/libmpg123-build/ports/cmake/src/compat/CMakeFiles/compat_str.dir/__/__/__/__/src/compat/compat_str.c.obj",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}

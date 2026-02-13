@@ -1,0 +1,120 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"vendored/SDL_mixer/external/opus/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 527,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 545,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 553,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 571,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/opus-build/opus.lib"
+			],
+			"targetId" : "opus::@4f719964a9fd34bee84f",
+			"targetIndex" : 18,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/opus-0.dll"
+			],
+			"targetId" : "opus::@4f719964a9fd34bee84f",
+			"targetIndex" : 18,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/pkgconfig",
+			"paths" : 
+			[
+				"build/vendored/SDL_mixer/external/opus-build/opus.pc"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/Opus",
+			"exportName" : "OpusTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "opus::@4f719964a9fd34bee84f",
+					"index" : 18
+				}
+			],
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/opus-build/CMakeFiles/Export/9d35469462eacf47198a472e89b71320/OpusTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/Opus",
+			"paths" : 
+			[
+				"build/vendored/SDL_mixer/external/opus-build/OpusConfig.cmake",
+				"build/vendored/SDL_mixer/external/opus-build/OpusConfigVersion.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/opus-build",
+		"source" : "vendored/SDL_mixer/external/opus"
+	}
+}

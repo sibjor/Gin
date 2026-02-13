@@ -1,0 +1,121 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"vendored/SDL_mixer/external/opusfile/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 96,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 199,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 315,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/opusfile-build/opusfile.lib"
+			],
+			"targetId" : "opusfile::@bb98bf2db79920c0198d",
+			"targetIndex" : 19,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/opusfile-0.dll"
+			],
+			"targetId" : "opusfile::@bb98bf2db79920c0198d",
+			"targetIndex" : 19,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/opusfile-build/opusurl.lib"
+			],
+			"targetId" : "opusurl::@bb98bf2db79920c0198d",
+			"targetIndex" : 20,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/opusurl.dll"
+			],
+			"targetId" : "opusurl::@bb98bf2db79920c0198d",
+			"targetIndex" : 20,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/opus",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/opusfile/include/opusfile.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/opusfile",
+			"paths" : 
+			[
+				"build/vendored/SDL_mixer/external/opusfile-build/OpusFileConfig.cmake",
+				"build/vendored/SDL_mixer/external/opusfile-build/OpusFileConfigVersion.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/opusfile-build",
+		"source" : "vendored/SDL_mixer/external/opusfile"
+	}
+}

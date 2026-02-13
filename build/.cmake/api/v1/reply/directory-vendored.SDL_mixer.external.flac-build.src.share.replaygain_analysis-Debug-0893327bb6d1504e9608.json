@@ -1,0 +1,19 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/flac-build/src/share/replaygain_analysis",
+		"source" : "vendored/SDL_mixer/external/flac/src/share/replaygain_analysis"
+	}
+}

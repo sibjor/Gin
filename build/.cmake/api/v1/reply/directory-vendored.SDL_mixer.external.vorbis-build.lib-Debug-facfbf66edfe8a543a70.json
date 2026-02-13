@@ -1,0 +1,131 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"vendored/SDL_mixer/external/vorbis/lib/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 119,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 121,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "C:/Program Files (x86)/Project/include/vorbis",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/vorbis/lib/../include/vorbis/codec.h",
+				"vendored/SDL_mixer/external/vorbis/lib/../include/vorbis/vorbisenc.h",
+				"vendored/SDL_mixer/external/vorbis/lib/../include/vorbis/vorbisfile.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/vorbis-build/lib/vorbis.lib"
+			],
+			"targetId" : "vorbis::@8caf8ed898340d6113b2",
+			"targetIndex" : 26,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/vorbis-0.dll"
+			],
+			"targetId" : "vorbis::@8caf8ed898340d6113b2",
+			"targetIndex" : 26,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/vorbis-build/lib/vorbisenc.lib"
+			],
+			"targetId" : "vorbisenc::@8caf8ed898340d6113b2",
+			"targetIndex" : 27,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/vorbisenc-2.dll"
+			],
+			"targetId" : "vorbisenc::@8caf8ed898340d6113b2",
+			"targetIndex" : 27,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"vendored/SDL_mixer/external/vorbis-build/lib/vorbisfile.lib"
+			],
+			"targetId" : "vorbisfile::@8caf8ed898340d6113b2",
+			"targetIndex" : 28,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/vorbisfile-3.dll"
+			],
+			"targetId" : "vorbisfile::@8caf8ed898340d6113b2",
+			"targetIndex" : 28,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_mixer/external/vorbis-build/lib",
+		"source" : "vendored/SDL_mixer/external/vorbis/lib"
+	}
+}

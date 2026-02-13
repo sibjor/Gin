@@ -1,0 +1,80 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"vendored/SDL_ttf/external/harfbuzz/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 743,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "include/harfbuzz",
+			"paths" : 
+			[
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-aat-layout.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-aat.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-blob.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-buffer.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-common.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-cplusplus.hh",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-deprecated.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-draw.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-face.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-font.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-map.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot-color.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot-deprecated.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot-font.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot-layout.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot-math.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot-meta.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot-metrics.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot-name.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot-shape.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot-var.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ot.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-paint.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-set.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-shape-plan.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-shape.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-style.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-unicode.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-version.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-ft.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-gdi.h",
+				"vendored/SDL_ttf/external/harfbuzz/src/hb-uniscribe.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "vendored/SDL_ttf/external/harfbuzz-build",
+		"source" : "vendored/SDL_ttf/external/harfbuzz"
+	}
+}
