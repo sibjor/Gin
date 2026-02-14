@@ -4,9 +4,16 @@ namespace Gin
 {
     GUI::GUI(SDL_Renderer* renderer, TTF_Font* font, const int width, const int height)
         : renderer(renderer), font(font),
+          logicalWidth(width), logicalHeight(height),
           mouseX(0), mouseY(0), mousePressed(false), mouseClicked(false),
           hotID(-1), activeID(-1), nextID(0)
     {
+    }
+
+    void GUI::SetSize(int width, int height)
+    {
+        logicalWidth = width;
+        logicalHeight = height;
     }
 
     void GUI::Begin(int mouseX, int mouseY, bool mousePressed)

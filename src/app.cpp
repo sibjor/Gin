@@ -47,7 +47,7 @@ namespace Gin
         window = SDL_CreateWindow(
             title,
             width, height,
-            SDL_WINDOW_RESIZABLE
+            SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED
         );
 
         if (!window)
@@ -63,17 +63,7 @@ namespace Gin
             return false;
         }
 
-        // Set logical presentation - SDL Magic!
-        if (!SDL_SetRenderLogicalPresentation(
-                renderer,
-                LOGICAL_WIDTH,
-                LOGICAL_HEIGHT,
-                SDL_LOGICAL_PRESENTATION_LETTERBOX
-                ))
-        {
-            SDL_Log("Failed to set logical presentation: %s", SDL_GetError());
-            return false;
-        }
+        // No SDL_SetRenderLogicalPresentation - editor UI adapts to window size
 
         // Enable VSync for smooth rendering
         SDL_SetRenderVSync(renderer, 1);
@@ -84,10 +74,13 @@ namespace Gin
             return false;
         }
 
-        gui = new GUI(renderer, defaultFont, LOGICAL_WIDTH, LOGICAL_HEIGHT);
+        // Get actual window size
+        int w, h;
+        SDL_GetWindowSize(window, &w, &h);
+        gui = new GUI(renderer, defaultFont, w, h);
         isRunning = true;
 
-        SDL_Log("Initialized with logical resolution: %dx%d", LOGICAL_WIDTH, LOGICAL_HEIGHT);
+        SDL_Log("Initialized with window size: %dx%d", w, h);
 
         return true;
     }
@@ -125,16 +118,67 @@ namespace Gin
         SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
         SDL_RenderClear(renderer);
 
-        float windowMouseX, windowMouseY;
-        Uint8 mouseState = SDL_GetMouseState(&windowMouseX, &windowMouseY);
-        bool mouseDown = (mouseState & SDL_BUTTON_LMASK) != 0;
+        // Update GUI size on every frame (handles window resize)
+        int windowW, windowH;
+        SDL_GetWindowSize(window, &windowW, &windowH);
+        gui->SetSize(windowW, windowH);
 
-        float logicalMouseX, logicalMouseY;
-        SDL_RenderCoordinatesFromWindow(renderer, windowMouseX, windowMouseY, &logicalMouseX, &logicalMouseY);
+        // Mouse coordinates - direct, no conversion needed
+        float mouseXf, mouseYf;
+        SDL_MouseButtonFlags mouseButtons = SDL_GetMouseState(&mouseXf, &mouseYf);
+        bool mouseDown = (mouseButtons & SDL_BUTTON_LMASK) != 0;
 
-        gui->Begin((int)logicalMouseX, (int)logicalMouseY, mouseDown);
+        gui->Begin((int)mouseXf, (int)mouseYf, mouseDown);
 
-        // GUI rendering goes here - see example-usage.hpp for examples
+        // === Editor-style layout ===
+        int W = gui->GetLogicalWidth();
+        int H = gui->GetLogicalHeight();
+
+        // Toolbar at top (fixed height)
+        int toolbarH = 50;
+        gui->Rect(0, 0, W, toolbarH, {45, 45, 45, 255});
+
+        if (gui->Button("New Project", 10, 5, 140, 40))
+        {
+            SDL_Log("New Project clicked!");
+        }
+
+        if (gui->Button("Open", 160, 5, 100, 40))
+        {
+            SDL_Log("Open clicked!");
+        }
+
+        if (gui->Button("Save", 270, 5, 100, 40))
+        {
+            SDL_Log("Save clicked!");
+        }
+
+        // Left side panel (proportional width)
+        int panelW = SDL_max(200, W / 5);  // At least 200px, otherwise 20% of window
+        int panelY = toolbarH;
+        int panelH = H - toolbarH;
+        gui->Rect(0, panelY, panelW, panelH, {40, 40, 40, 255});
+
+        gui->Label("Inspector", 10, panelY + 10);
+
+        if (gui->Slider("Volume", 10, panelY + 50, panelW - 20, &volume, 0.0f, 1.0f))
+        {
+            SDL_Log("Volume: %.2f", volume);
+        }
+
+        std::vector<std::string> options = {"Low", "Medium", "High", "Ultra"};
+        if (gui->Dropdown("Quality", 10, panelY + 130, panelW - 20, &selectedOption, options))
+        {
+            SDL_Log("Quality: %s", options[selectedOption].c_str());
+        }
+
+        // Viewport (rest of the area)
+        int vpX = panelW;
+        int vpY = toolbarH;
+        int vpW = W - panelW;
+        int vpH = H - toolbarH;
+        gui->Rect(vpX, vpY, vpW, vpH, {35, 35, 35, 255});
+        gui->Label("Viewport", vpX + vpW / 2 - 30, vpY + vpH / 2);
 
         gui->End();
 

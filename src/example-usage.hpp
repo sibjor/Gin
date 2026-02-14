@@ -18,45 +18,60 @@ namespace Gin
         int selectedOption = 0;
         
     public:
-        ExampleGUIUsage(SDL_Renderer* renderer, GUI* gui) 
+        ExampleGUIUsage(SDL_Renderer* renderer, GUI* gui)
             : renderer(renderer), gui(gui) {}
         
         void render()
         {
-            // Get mouse input
-            float windowMouseX, windowMouseY;
-            Uint8 mouseState = SDL_GetMouseState(&windowMouseX, &windowMouseY);
-            bool mouseDown = (mouseState & SDL_BUTTON_LMASK) != 0;
-
-            // Convert to logical coordinates
-            float logicalMouseX, logicalMouseY;
-            SDL_RenderCoordinatesFromWindow(renderer, windowMouseX, windowMouseY, 
-                                           &logicalMouseX, &logicalMouseY);
+            // Get mouse input - direct coordinates, no conversion needed
+            float mouseXf, mouseYf;
+            SDL_MouseButtonFlags mouseButtons = SDL_GetMouseState(&mouseXf, &mouseYf);
+            bool mouseDown = (mouseButtons & SDL_BUTTON_LMASK) != 0;
 
             // Begin GUI frame
-            gui->Begin((int)logicalMouseX, (int)logicalMouseY, mouseDown);
+            gui->Begin((int)mouseXf, (int)mouseYf, mouseDown);
 
-            // Label example
-            gui->Label("Gin Engine Demo", 50, 50);
+            // Get current window dimensions
+            int W = gui->GetLogicalWidth();
+            int H = gui->GetLogicalHeight();
 
-            // Button example
-            if (gui->Button("New Project", 50, 100, 200, 50))
+            // Toolbar (fixed height)
+            int toolbarH = 50;
+            gui->Rect(0, 0, W, toolbarH, {45, 45, 45, 255});
+
+            if (gui->Button("New Project", 10, 5, 140, 40))
             {
                 SDL_Log("New Project button clicked!");
             }
 
+            // Side panel (proportional)
+            int panelW = SDL_max(200, W / 5);
+            int panelY = toolbarH;
+            int panelH = H - toolbarH;
+            gui->Rect(0, panelY, panelW, panelH, {40, 40, 40, 255});
+
+            gui->Label("Inspector", 10, panelY + 10);
+
             // Slider example
-            if (gui->Slider("Volume", 50, 180, 300, &volume, 0.0f, 1.0f))
+            if (gui->Slider("Volume", 10, panelY + 50, panelW - 20, &volume, 0.0f, 1.0f))
             {
                 SDL_Log("Volume changed: %.2f", volume);
             }
 
             // Dropdown example
             std::vector<std::string> options = {"Low", "Medium", "High", "Ultra"};
-            if (gui->Dropdown("Quality", 50, 280, 300, &selectedOption, options))
+            if (gui->Dropdown("Quality", 10, panelY + 130, panelW - 20, &selectedOption, options))
             {
                 SDL_Log("Quality changed to: %s", options[selectedOption].c_str());
             }
+
+            // Viewport
+            int vpX = panelW;
+            int vpY = toolbarH;
+            int vpW = W - panelW;
+            int vpH = H - toolbarH;
+            gui->Rect(vpX, vpY, vpW, vpH, {35, 35, 35, 255});
+            gui->Label("Viewport", vpX + vpW / 2 - 30, vpY + vpH / 2);
 
             // End GUI frame
             gui->End();

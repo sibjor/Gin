@@ -22,10 +22,6 @@ namespace Gin
         TTF_Font *defaultFont;
         GUI* gui;
         
-        // Logical resolution (design resolution)
-        static constexpr int LOGICAL_WIDTH = 1920;
-        static constexpr int LOGICAL_HEIGHT = 1080;
-        
         // Example GUI state
         float volume;
         int selectedOption;
