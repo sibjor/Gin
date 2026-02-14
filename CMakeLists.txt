@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.20)
 
 project(Gin LANGUAGES C CXX)
 
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>")
 
@@ -14,6 +15,8 @@ add_executable(Gin
     src/main.cpp
     src/app.cpp
     src/gui.cpp
+    src/files.cpp
+    src/text.cpp
 )
 
 # Link everything you need

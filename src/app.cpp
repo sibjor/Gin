@@ -4,7 +4,10 @@
 namespace Gin
 {
     App::App() : window(nullptr), renderer(nullptr), isRunning(false),
-                 defaultFont(nullptr), gui(nullptr), volume(0.5f), selectedOption(0)
+                 defaultFont(nullptr), gui(nullptr),
+                 selectedProjectIndex(-1),
+                 activePopup(PopupType::None),
+                 textInputWasActive(false)
     {
     }
 
@@ -47,7 +50,7 @@ namespace Gin
         window = SDL_CreateWindow(
             title,
             width, height,
-            SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED
+            SDL_WINDOW_RESIZABLE
         );
 
         if (!window)
@@ -80,6 +83,8 @@ namespace Gin
         gui = new GUI(renderer, defaultFont, w, h);
         isRunning = true;
 
+        refreshProjects();
+
         SDL_Log("Initialized with window size: %dx%d", w, h);
 
         return true;
@@ -105,6 +110,33 @@ namespace Gin
             case SDL_EVENT_QUIT:
                 isRunning = false;
                 break;
+            case SDL_EVENT_TEXT_INPUT:
+                if (gui)
+                    gui->HandleTextEvent(event.text.text);
+                break;
+            case SDL_EVENT_KEY_DOWN:
+                if (gui)
+                    gui->HandleKeyEvent(event.key.key);
+                break;
+            case SDL_EVENT_MOUSE_WHEEL:
+                if (gui)
+                    gui->HandleScrollEvent(event.wheel.y);
+                break;
+            }
+        }
+
+        if (gui)
+        {
+            bool hasFocus = gui->HasTextFocus();
+            if (hasFocus && !textInputWasActive)
+            {
+                SDL_StartTextInput(window);
+                textInputWasActive = true;
+            }
+            else if (!hasFocus && textInputWasActive)
+            {
+                SDL_StopTextInput(window);
+                textInputWasActive = false;
             }
         }
     }
@@ -113,75 +145,119 @@ namespace Gin
     {
     }
 
+    void App::refreshProjects()
+    {
+        projects = fs.listProjects();
+        if (selectedProjectIndex >= (int)projects.size())
+            selectedProjectIndex = -1;
+    }
+
     void App::render()
     {
         SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
         SDL_RenderClear(renderer);
 
-        // Update GUI size on every frame (handles window resize)
         int windowW, windowH;
         SDL_GetWindowSize(window, &windowW, &windowH);
         gui->SetSize(windowW, windowH);
 
-        // Mouse coordinates - direct, no conversion needed
         float mouseXf, mouseYf;
         SDL_MouseButtonFlags mouseButtons = SDL_GetMouseState(&mouseXf, &mouseYf);
         bool mouseDown = (mouseButtons & SDL_BUTTON_LMASK) != 0;
 
         gui->Begin((int)mouseXf, (int)mouseYf, mouseDown);
 
-        // === Editor-style layout ===
         int W = gui->GetLogicalWidth();
         int H = gui->GetLogicalHeight();
 
-        // Toolbar at top (fixed height)
+        // === Toolbar ===
         int toolbarH = 50;
         gui->Rect(0, 0, W, toolbarH, {45, 45, 45, 255});
+        gui->Label("Gin", W / 2 - 10, 15);
 
         if (gui->Button("New Project", 10, 5, 140, 40))
         {
-            SDL_Log("New Project clicked!");
+            activePopup = PopupType::TextInput;
+            popupInputText.clear();
         }
 
-        if (gui->Button("Open", 160, 5, 100, 40))
+        // === Side panel (right, only when project selected) ===
+        int panelW = 0;
+        if (selectedProjectIndex >= 0 && selectedProjectIndex < (int)projects.size())
         {
-            SDL_Log("Open clicked!");
+            panelW = SDL_max(250, W / 4);
+            const ProjectInfo &proj = projects[selectedProjectIndex];
+
+            std::vector<std::string> details = {
+                proj.name,
+                proj.lastModified,
+                proj.path
+            };
+
+            if (gui->SidePanel("Project Details", W - panelW, toolbarH, panelW, H - toolbarH,
+                               details, "Open"))
+            {
+                SDL_Log("Open project: %s", proj.name.c_str());
+            }
         }
 
-        if (gui->Button("Save", 270, 5, 100, 40))
+        // === Project list (scrollable) ===
+        int listX = 0;
+        int listY = toolbarH;
+        int listW = W - panelW;
+        int listH = H - toolbarH;
+
+        gui->Rect(listX, listY, listW, listH, {35, 35, 35, 255});
+
+        const int rowH = 60;
+        const int rowPad = 2;
+        float contentHeight = (float)(projects.size() * (rowH + rowPad) + rowPad);
+
+        int scrollY = gui->BeginScroll(listX, listY, listW, listH, contentHeight);
+
+        for (int i = 0; i < (int)projects.size(); i++)
         {
-            SDL_Log("Save clicked!");
+            int ry = listY + rowPad + i * (rowH + rowPad) + scrollY;
+
+            // Skip rows outside visible region
+            if (ry + rowH < listY || ry > listY + listH)
+                continue;
+
+            if (gui->ProjectRow(projects[i].name.c_str(),
+                                projects[i].lastModified.c_str(),
+                                listX + rowPad, ry,
+                                listW - rowPad * 2 - 8, rowH,
+                                i == selectedProjectIndex))
+            {
+                selectedProjectIndex = i;
+            }
         }
 
-        // Left side panel (proportional width)
-        int panelW = SDL_max(200, W / 5);  // At least 200px, otherwise 20% of window
-        int panelY = toolbarH;
-        int panelH = H - toolbarH;
-        gui->Rect(0, panelY, panelW, panelH, {40, 40, 40, 255});
-
-        gui->Label("Inspector", 10, panelY + 10);
-
-        if (gui->Slider("Volume", 10, panelY + 50, panelW - 20, &volume, 0.0f, 1.0f))
+        if (projects.empty())
         {
-            SDL_Log("Volume: %.2f", volume);
+            gui->Label("No projects yet. Click 'New Project' to create one.",
+                       listX + 20, listY + 30 + scrollY);
         }
 
-        std::vector<std::string> options = {"Low", "Medium", "High", "Ultra"};
-        if (gui->Dropdown("Quality", 10, panelY + 130, panelW - 20, &selectedOption, options))
+        gui->EndScroll();
+
+        // === Popup ===
+        if (activePopup == PopupType::TextInput)
         {
-            SDL_Log("Quality: %s", options[selectedOption].c_str());
+            bool open = true;
+            if (gui->PopupTextInput("New Project", "Project Name", popupInputText, &open))
+            {
+                if (fs.createProject(popupInputText))
+                {
+                    SDL_Log("Created project: %s", popupInputText.c_str());
+                    refreshProjects();
+                }
+            }
+            if (!open)
+                activePopup = PopupType::None;
         }
-
-        // Viewport (rest of the area)
-        int vpX = panelW;
-        int vpY = toolbarH;
-        int vpW = W - panelW;
-        int vpH = H - toolbarH;
-        gui->Rect(vpX, vpY, vpW, vpH, {35, 35, 35, 255});
-        gui->Label("Viewport", vpX + vpW / 2 - 30, vpY + vpH / 2);
 
         gui->End();
-
         SDL_RenderPresent(renderer);
     }
 
