@@ -14,6 +14,8 @@ add_subdirectory(vendored/SDL_ttf EXCLUDE_FROM_ALL)
 add_executable(Gin
     src/main.cpp
     src/app.cpp
+    src/intro-hub.cpp
+    src/editor.cpp
     src/gui.cpp
     src/files.cpp
     src/text.cpp

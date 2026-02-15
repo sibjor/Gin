@@ -2,41 +2,20 @@
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_mixer/SDL_mixer.h>
-#include "gui.hpp"
-#include "files.hpp"
 
 namespace Gin
 {
-    class App
-    {
-    public:
-        App();
-        ~App();
-        bool initialize(const char *title, int width, int height);
-        void run();
-        void cleanup();
+    /// Initializes all SDL subsystems (video, audio, gamepad, TTF, mixer).
+    bool initSubsystems();
 
-    private:
-        SDL_Window *window;
-        SDL_Renderer *renderer;
-        bool isRunning;
-        TTF_Font *defaultFont;
-        GUI* gui;
-        FS fs;
+    /// Creates a resizable window and renderer with VSync enabled.
+    bool createWindow(const char *title, int width, int height,
+                      SDL_Window **window, SDL_Renderer **renderer);
 
-        // Project list
-        std::vector<ProjectInfo> projects;
-        int selectedProjectIndex;
+    /// Loads the default UI font. Returns nullptr on failure.
+    TTF_Font *loadDefaultFont();
 
-        // Popup
-        PopupType activePopup;
-        std::string popupInputText;
-        bool textInputWasActive;
+    /// Shuts down all SDL subsystems and frees window/renderer/font.
+    void shutdownAll(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font);
 
-        void handleEvents();
-        void update();
-        void render();
-        bool loadFonts();
-        void refreshProjects();
-    };
 } // namespace Gin
