@@ -1,3 +1,11 @@
 #pragma once
 
-// TODO: Editor class will be implemented here
+namespace Gin
+{
+    class Editor
+    {
+        public:
+            Editor();
+            ~Editor();
+    };
+}

@@ -67,7 +67,7 @@ std::vector<Gin::ProjectInfo> Gin::FS::listProjects() const
             continue;
 
         ProjectInfo info;
-        info.name = entry.path().filename().string();
+        info.projectName = entry.path().filename().string();
         info.path = entry.path().string();
         info.lastModified = formatTime(entry.last_write_time());
         projects.push_back(info);

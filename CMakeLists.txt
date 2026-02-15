@@ -16,6 +16,7 @@ add_executable(Gin
     src/app.cpp
     src/intro-hub.cpp
     src/editor.cpp
+    src/project.cpp
     src/gui.cpp
     src/files.cpp
     src/text.cpp

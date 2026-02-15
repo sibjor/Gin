@@ -1,6 +1,7 @@
 #include "app.hpp"
 #include "intro-hub.hpp"
 #include "editor.hpp"
+#include "project.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -64,11 +65,20 @@ int main(int argc, char *argv[])
         // === Phase 2: Editor ===
         if (startEditor)
         {
+            Gin::ProjectManager pm;
+            Gin::ProjectInfo project = pm.loadProject(projectPath);
+
+            if (project.projectName.empty())
+            {
+                SDL_Log("Failed to load project at: %s", projectPath.c_str());
+                continue; // loop back to intro hub
+            }
+
             SDL_Log("Opening editor for project: %s (%s)",
-                    projectName.c_str(), projectPath.c_str());
+                    project.projectName.c_str(), project.path.c_str());
 
             // TODO: Create and run Editor instance
-            // Gin::Editor editor(window, renderer, font, projectPath, projectName);
+            // Gin::Editor editor(window, renderer, font, project);
             // while (running) {
             //     auto result = editor.update();
             //     if (result == EditorResult::Quit) { running = false; break; }

@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "gui.hpp"
-#include "files.hpp"
+#include "project.hpp"
 
 namespace Gin
 {
@@ -28,7 +28,7 @@ namespace Gin
         SDL_Window *window;
         SDL_Renderer *renderer;
         GUI *gui;
-        FS fs;
+        ProjectManager projectManager;
 
         std::vector<ProjectInfo> projects;
         int selectedProjectIndex;

@@ -4,18 +4,11 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "project.hpp"
 
 namespace Gin
 {
-    // Info about a project on disk
-    struct ProjectInfo
-    {
-        std::string name;
-        std::string path;
-        std::string lastModified; // human-readable "YYYY-MM-DD HH:MM"
-    };
-
-    // FS - FileSystem
+    // FS - FileSystem utilities (generic file operations)
     class FS
     {
     public:

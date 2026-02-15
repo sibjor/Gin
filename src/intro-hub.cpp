@@ -1,4 +1,5 @@
 #include "intro-hub.hpp"
+#include "files.hpp"
 
 namespace Gin
 {
@@ -25,7 +26,7 @@ namespace Gin
 
     void IntroHub::refreshProjects()
     {
-        projects = fs.listProjects();
+        projects = projectManager.listProjects();
         if (selectedProjectIndex >= (int)projects.size())
             selectedProjectIndex = -1;
     }
@@ -108,7 +109,7 @@ namespace Gin
             const ProjectInfo &proj = projects[selectedProjectIndex];
 
             std::vector<std::string> details = {
-                proj.name,
+                proj.projectName,
                 proj.lastModified,
                 proj.path};
 
@@ -116,7 +117,7 @@ namespace Gin
                                details, "Open"))
             {
                 selectedProjectPath = proj.path;
-                selectedProjectName = proj.name;
+                selectedProjectName = proj.projectName;
                 openProject = true;
             }
         }
@@ -142,7 +143,7 @@ namespace Gin
             if (ry + rowH < listY || ry > listY + listH)
                 continue;
 
-            if (gui->ProjectRow(projects[i].name.c_str(),
+            if (gui->ProjectRow(projects[i].projectName.c_str(),
                                 projects[i].lastModified.c_str(),
                                 listX + rowPad, ry,
                                 listW - rowPad * 2 - 8, rowH,
@@ -166,9 +167,10 @@ namespace Gin
             bool open = true;
             if (gui->PopupTextInput("New Project", "Project Name", popupInputText, &open))
             {
-                if (fs.createProject(popupInputText))
+                ProjectInfo created = projectManager.createProject(popupInputText);
+                if (!created.projectName.empty())
                 {
-                    SDL_Log("Created project: %s", popupInputText.c_str());
+                    SDL_Log("Created project: %s", created.projectName.c_str());
                     refreshProjects();
                 }
             }
