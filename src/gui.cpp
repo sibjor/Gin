@@ -261,16 +261,13 @@ namespace Gin
 
     int GUI::LabelWrapped(const char *text, int x, int y, int maxWidth)
     {
-        std::vector<std::string> lines = TextUtil::WrapText(font, text, maxWidth);
-        int lineH = 0;
-        TextUtil::Measure(font, "Ag", nullptr, &lineH);
-        if (lineH == 0) lineH = 16;
+        TextLayout layout = TextUtil::BuildLayout(font, text, maxWidth);
 
         int cy = y;
-        for (const auto &line : lines)
+        for (int i = 0; i < layout.LineCount(); i++)
         {
-            Text(line.c_str(), x, cy, {255, 255, 255, 255});
-            cy += lineH + 4;
+            Text(layout.lines[i].text.c_str(), x, cy, {255, 255, 255, 255});
+            cy += layout.lines[i].height + layout.lineSpacing;
         }
         return cy - y;
     }
@@ -398,15 +395,12 @@ namespace Gin
         int wrapWidth = w - pad * 2;
         for (const auto &line : details)
         {
-            std::vector<std::string> wrapped = TextUtil::WrapText(font, line, wrapWidth);
-            int lineH = 0;
-            TextUtil::Measure(font, "Ag", nullptr, &lineH);
-            if (lineH == 0) lineH = 16;
+            TextLayout layout = TextUtil::BuildLayout(font, line, wrapWidth);
 
-            for (const auto &wl : wrapped)
+            for (int i = 0; i < layout.LineCount(); i++)
             {
-                Text(wl.c_str(), x + pad, cy, {180, 180, 180, 255});
-                cy += lineH + 4;
+                Text(layout.lines[i].text.c_str(), x + pad, cy, {180, 180, 180, 255});
+                cy += layout.lines[i].height + layout.lineSpacing;
             }
             cy += 4; // extra gap between detail entries
         }
