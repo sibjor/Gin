@@ -45,6 +45,9 @@ namespace Gin
         /// Deletes the project directory at the given path.
         bool deleteProject(const std::string &projectPath);
 
+        /// Renames a project (directory + metadata). Returns true on success.
+        bool renameProject(const std::string &projectPath, const std::string &newName);
+
         /// Saves project metadata to disk (project.gin file).
         bool saveProject(const ProjectInfo &project) const;
 

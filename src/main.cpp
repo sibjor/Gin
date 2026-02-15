@@ -77,13 +77,18 @@ int main(int argc, char *argv[])
             SDL_Log("Opening editor for project: %s (%s)",
                     project.projectName.c_str(), project.path.c_str());
 
-            // TODO: Create and run Editor instance
-            // Gin::Editor editor(window, renderer, font, project);
-            // while (running) {
-            //     auto result = editor.update();
-            //     if (result == EditorResult::Quit) { running = false; break; }
-            //     if (result == EditorResult::BackToHub) { break; }
-            // }
+            Gin::Editor editor(window, renderer, font, project);
+            while (running)
+            {
+                Gin::EditorResult result = editor.update();
+                if (result == Gin::EditorResult::Quit)
+                {
+                    running = false;
+                    break;
+                }
+                if (result == Gin::EditorResult::BackToHub)
+                    break;
+            }
         }
     }
 

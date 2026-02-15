@@ -407,8 +407,10 @@ namespace Gin
 
         cy += 10;
 
-        // Action button
-        bool clicked = Button(actionLabel, x + pad, cy, w - pad * 2, 35);
+        // Action button (skip if label is empty or null)
+        bool clicked = false;
+        if (actionLabel && actionLabel[0] != '\0')
+            clicked = Button(actionLabel, x + pad, cy, w - pad * 2, 35);
 
         return clicked;
     }

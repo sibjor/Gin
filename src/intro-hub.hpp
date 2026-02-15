@@ -13,6 +13,15 @@ namespace Gin
         Quit         // User wants to quit
     };
 
+    // Which popup is currently active in the intro hub
+    enum class HubPopup
+    {
+        None,
+        NewProject,
+        DeleteConfirm,
+        RenameProject
+    };
+
     class IntroHub
     {
     public:
@@ -33,7 +42,7 @@ namespace Gin
         std::vector<ProjectInfo> projects;
         int selectedProjectIndex;
 
-        PopupType activePopup;
+        HubPopup hubPopup;
         std::string popupInputText;
         bool textInputWasActive;
 

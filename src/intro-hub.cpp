@@ -6,7 +6,7 @@ namespace Gin
     IntroHub::IntroHub(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font)
         : window(window), renderer(renderer), gui(nullptr),
           selectedProjectIndex(-1),
-          activePopup(PopupType::None),
+          hubPopup(HubPopup::None),
           textInputWasActive(false)
     {
         int w, h;
@@ -97,7 +97,7 @@ namespace Gin
 
         if (gui->Button("New Project", 10, 5, 140, 40))
         {
-            activePopup = PopupType::TextInput;
+            hubPopup = HubPopup::NewProject;
             popupInputText.clear();
         }
 
@@ -119,6 +119,22 @@ namespace Gin
                 selectedProjectPath = proj.path;
                 selectedProjectName = proj.projectName;
                 openProject = true;
+            }
+
+            // Extra action buttons below the side panel content
+            int btnX = W - panelW + 15;
+            int btnW = panelW - 30;
+            int btnY = H - 100;
+
+            if (gui->Button("Rename", btnX, btnY, btnW, 35))
+            {
+                hubPopup = HubPopup::RenameProject;
+                popupInputText = proj.projectName;
+            }
+
+            if (gui->Button("Delete", btnX, btnY + 45, btnW, 35))
+            {
+                hubPopup = HubPopup::DeleteConfirm;
             }
         }
 
@@ -161,8 +177,8 @@ namespace Gin
 
         gui->EndScroll();
 
-        // === Popup ===
-        if (activePopup == PopupType::TextInput)
+        // === Popups ===
+        if (hubPopup == HubPopup::NewProject)
         {
             bool open = true;
             if (gui->PopupTextInput("New Project", "Project Name", popupInputText, &open))
@@ -175,7 +191,47 @@ namespace Gin
                 }
             }
             if (!open)
-                activePopup = PopupType::None;
+                hubPopup = HubPopup::None;
+        }
+
+        if (hubPopup == HubPopup::DeleteConfirm)
+        {
+            bool open = true;
+            std::string msg = "Are you sure you want to delete '";
+            if (selectedProjectIndex >= 0 && selectedProjectIndex < (int)projects.size())
+                msg += projects[selectedProjectIndex].projectName;
+            msg += "'?";
+
+            if (gui->PopupConfirm("Delete Project", msg.c_str(), &open))
+            {
+                if (selectedProjectIndex >= 0 && selectedProjectIndex < (int)projects.size())
+                {
+                    projectManager.deleteProject(projects[selectedProjectIndex].path);
+                    selectedProjectIndex = -1;
+                    refreshProjects();
+                }
+            }
+            if (!open)
+                hubPopup = HubPopup::None;
+        }
+
+        if (hubPopup == HubPopup::RenameProject)
+        {
+            bool open = true;
+            if (gui->PopupTextInput("Rename Project", "New Name", popupInputText, &open))
+            {
+                if (selectedProjectIndex >= 0 && selectedProjectIndex < (int)projects.size())
+                {
+                    if (projectManager.renameProject(projects[selectedProjectIndex].path, popupInputText))
+                    {
+                        SDL_Log("Renamed project to: %s", popupInputText.c_str());
+                        selectedProjectIndex = -1;
+                        refreshProjects();
+                    }
+                }
+            }
+            if (!open)
+                hubPopup = HubPopup::None;
         }
 
         gui->End();

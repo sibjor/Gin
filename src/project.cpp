@@ -182,6 +182,46 @@ namespace Gin
         return true;
     }
 
+    bool ProjectManager::renameProject(const std::string &projectPath, const std::string &newName)
+    {
+        if (!isValidName(newName))
+        {
+            SDL_Log("ProjectManager: Invalid new name: '%s'", newName.c_str());
+            return false;
+        }
+
+        if (!std::filesystem::exists(projectPath))
+        {
+            SDL_Log("ProjectManager: Path does not exist: %s", projectPath.c_str());
+            return false;
+        }
+
+        std::string newPath = basePath + newName;
+        if (std::filesystem::exists(newPath))
+        {
+            SDL_Log("ProjectManager: A project named '%s' already exists", newName.c_str());
+            return false;
+        }
+
+        std::error_code ec;
+        std::filesystem::rename(projectPath, newPath, ec);
+        if (ec)
+        {
+            SDL_Log("ProjectManager: Failed to rename '%s' to '%s': %s",
+                    projectPath.c_str(), newPath.c_str(), ec.message().c_str());
+            return false;
+        }
+
+        // Update metadata inside the renamed directory
+        ProjectInfo info = loadProject(newPath);
+        info.projectName = newName;
+        info.path = newPath;
+        saveProject(info);
+
+        SDL_Log("ProjectManager: Renamed project to '%s' at %s", newName.c_str(), newPath.c_str());
+        return true;
+    }
+
     bool ProjectManager::saveProject(const ProjectInfo &project) const
     {
         std::string meta = metaFilePath(project.path);

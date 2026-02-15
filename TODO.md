@@ -1,0 +1,4 @@
+- [x] functional delete project button in the intro hub
+- [x] functional rename project button in the intro hub
+- [x] editor layout
+- [x] update example-usage.hpp to latest style of work
